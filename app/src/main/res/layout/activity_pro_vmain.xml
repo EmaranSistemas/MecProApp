@@ -172,6 +172,7 @@
                <EditText
                    android:layout_width="match_parent"
                    android:padding="5dp"
+                   android:id="@+id/direccion_txt"
                    android:textSize="14dp"
                    android:hint="DIRECCIÓN"
                    android:layout_height="wrap_content"
@@ -193,6 +194,7 @@
                 <EditText
                     android:layout_width="200dp"
                     android:padding="5dp"
+                    android:id="@+id/nombre_co"
                     android:textSize="14dp"
                     android:hint="NOMBRE COMERCIAL"
                     android:layout_height="wrap_content"
@@ -206,14 +208,13 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
                     android:orientation="vertical">
-                    <EditText
+                    <Spinner
                         android:layout_width="match_parent"
                         android:padding="5dp"
+                        android:id="@+id/categoria_txt"
                         android:textSize="14dp"
-                        android:hint="CATEGORÍA"
                         android:layout_height="wrap_content"
                         android:background="@drawable/snipper"
-                        android:drawableStart="@drawable/baseline_category_24"
                         />
                 </LinearLayout>
 
@@ -353,6 +354,7 @@
             android:padding="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:id="@+id/ventas_txt"
             android:textSize="14dp"
             android:hint="VENTAS S/."
             android:layout_height="wrap_content"
@@ -372,7 +374,7 @@
                 android:height="50dp"
                 android:layout_marginTop="10dp"
                 android:padding="5dp"
-
+                android:id="@+id/observaciones_txt"
                 android:textSize="12dp"
                 android:hint="OBSERVACIONES"
                 android:layout_height="wrap_content"
