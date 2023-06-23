@@ -10,25 +10,23 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
-            android:title="Home"
+            android:title="Menu Inicio"
+            />
+        <item
+            android:id="@+id/nav_reportes"
+            android:icon="@drawable/baseline_app_registration_24"
+            android:title="Reportes"
+            />
+        <item
+            android:id="@+id/nav_inventario"
+            android:icon="@drawable/baseline_inventory_24"
+            android:title="Inventario"
             />
 
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_configuracion"
             android:icon="@drawable/ic_baseline_settings_24"
-            android:title="Settings"
-            />
-
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_baseline_share_24"
-            android:title="Share"
-            />
-
-        <item
-            android:id="@+id/nav_aboutUs"
-            android:icon="@drawable/ic_baseline_info_24"
-            android:title="About Us"
+            android:title="Configuración"
             />
     </group>
 
@@ -37,9 +35,9 @@
 
         <menu>
             <item
-                android:id="@+id/nav_logout"
+                android:id="@+id/nav_salir"
                 android:icon="@drawable/ic_baseline_exit_to_app_24"
-                android:title="Logout"
+                android:title="Cerrar sesión"
                 />
         </menu>
     </item>

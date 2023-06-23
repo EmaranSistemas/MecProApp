@@ -12,6 +12,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.sparrow.drawernavigation.Fragments.ConfiguracionFragment;
+import com.sparrow.drawernavigation.Fragments.HomeFragment;
+import com.sparrow.drawernavigation.Fragments.InventarioFragment;
+import com.sparrow.drawernavigation.Fragments.ReportFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -46,20 +50,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                 break;
 
-            case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SetingsFragment()).commit();
+            case R.id.nav_inventario:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InventarioFragment()).commit();
                 break;
 
-            case R.id.nav_share:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareFragment()).commit();
+            case R.id.nav_reportes:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReportFragment()).commit();
                 break;
 
-            case R.id.nav_aboutUs:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+            case R.id.nav_configuracion:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ConfiguracionFragment()).commit();
                 break;
 
-            case R.id.nav_logout:
-                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+            case R.id.nav_salir:
+                Toast.makeText(this, "Salir", Toast.LENGTH_SHORT).show();
                 break;
         }
 

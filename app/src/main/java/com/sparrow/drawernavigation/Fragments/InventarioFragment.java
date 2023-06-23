@@ -1,4 +1,4 @@
-package com.sparrow.drawernavigation;
+package com.sparrow.drawernavigation.Fragments;
 
 import android.os.Bundle;
 
@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SetingsFragment extends Fragment {
+import com.sparrow.drawernavigation.R;
+
+public class InventarioFragment extends Fragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setings, container, false);
+        return inflater.inflate(R.layout.fragment_inventario, container, false);
     }
 }
