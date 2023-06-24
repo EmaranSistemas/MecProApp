@@ -19,7 +19,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".ProVMainActivity"
+            android:name=".PromvApp.ProVMainActivity"
             android:exported="false" />
         <activity
             android:name=".PromvApp.PromotorActivity"

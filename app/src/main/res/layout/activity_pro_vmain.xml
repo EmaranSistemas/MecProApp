@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProVMainActivity"
+    tools:context=".PromvApp.ProVMainActivity"
     >
 
     <LinearLayout
@@ -87,7 +87,6 @@
                         android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/snipper"
-                        android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -244,7 +243,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/snipper"
-                android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
+                android:spinnerItemStyle="@style/SpinnerTextStyle"
                 />
         </LinearLayout>
 
@@ -293,7 +292,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/snipper"
-                android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
+                android:textSize="12sp"
                 />
 
 
@@ -357,6 +356,7 @@
             android:id="@+id/ventas_txt"
             android:textSize="14dp"
             android:hint="VENTAS S/."
+            android:inputType="numberDecimal"
             android:layout_height="wrap_content"
             android:background="@drawable/snipper"
             android:drawableStart="@drawable/baseline_monetization_on_24"
