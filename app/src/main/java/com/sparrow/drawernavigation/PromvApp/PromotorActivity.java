@@ -13,8 +13,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.sparrow.drawernavigation.MainActivity;
-import com.sparrow.drawernavigation.ProVMainActivity;
 import com.sparrow.drawernavigation.PromvApp.Adapters.DetalleAdapter;
 import com.sparrow.drawernavigation.PromvApp.Entities.detalle;
 import com.sparrow.drawernavigation.R;

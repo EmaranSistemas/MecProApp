@@ -1,4 +1,4 @@
-package com.sparrow.drawernavigation;
+package com.sparrow.drawernavigation.PromvApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -28,8 +27,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sparrow.drawernavigation.MainActivity;
 import com.sparrow.drawernavigation.PromvApp.Adapters.PfAdapter;
 import com.sparrow.drawernavigation.PromvApp.Entities.Frescos;
+import com.sparrow.drawernavigation.R;
 import com.sparrow.drawernavigation.Ubication.GpsTracker;
 
 import org.json.JSONArray;
@@ -48,11 +49,11 @@ public class ProVMainActivity extends AppCompatActivity {
     String[] distribuidores = {"Adriel","Francisco","Clara","Rodolfo","Juan Carlos","María","Carmen","Mirtha","Gerardo"};
     String[] categorias = {"Bodega","Minimarket","Supermercado","Especiería","Puesto de Mercado",
             "Tienda de Abarrotes","Food Truck","Puesto de Comida","Snack","Carniceria","Pizzeria","Otros"};
-    String[] polvosarr = {"SAZONADOR COMPLETO  GIGANTE X 42 SBS","COMINO MOLIDO GIGANTE X 42 SBS","PIMIENTA BATAN GIGANTE X 42 SBS","PALILLO BATAN  GIGANTE X 42 SBS",
+    String[] polvosarr = {"------SELECCIONE------","SAZONADOR COMPLETO  GIGANTE X 42 SBS","COMINO MOLIDO GIGANTE X 42 SBS","PIMIENTA BATAN GIGANTE X 42 SBS","PALILLO BATAN  GIGANTE X 42 SBS",
             "TUCO SAZON SALSA BATAN GIGANTE X 42 SBS","AJO BATAN GIGANTE X 42 SBS","CANELA MOLIDA GIGANTE X 42 SBS","EL VERDE BATAN GIGANTE X 42 SBS","KION MOLIDO BATAN GIGANTE X 42 SBS"
             ,"OREGANO SELECTO BATAN X 42 SBS","EL VERDE BATAN GIGANTE x 27 SBS"};
 
-    String[] frescosarr = {"AJI PANCA FRESCO BATAN x 24 SBS","AJI AMARILLO FRESCO BATAN x24 SBS","AJO FRESCO BATAN x 24 SBS","CULANTRO FRESCO BATAN x 24 SBS"};
+    String[] frescosarr = {"------SELECCIONE------","AJI PANCA FRESCO BATAN x 24 SBS","AJI AMARILLO FRESCO BATAN x24 SBS","AJO FRESCO BATAN x 24 SBS","CULANTRO FRESCO BATAN x 24 SBS"};
 
     String Distribuidor;
     String categoriasfinal;
@@ -110,11 +111,33 @@ public class ProVMainActivity extends AppCompatActivity {
         adapter2 = new PfAdapter(this, pro_frecos);
         recyclerView2.setAdapter(adapter2);
 
+/*
+        Spinner distribuidor = findViewById(R.id.distribuidor_txt);
+        adapterdistribuidores = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, distribuidores);
+        adapterdistribuidores.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        distribuidor.setAdapter(adapterdistribuidores);
+*/
 
         Spinner distribuidor = findViewById(R.id.distribuidor_txt);
         adapterdistribuidores = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, distribuidores);
         adapterdistribuidores.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         distribuidor.setAdapter(adapterdistribuidores);
+        distribuidor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                Distribuidor = item;
+                //Toast.makeText(getApplicationContext(),"Item: "+item,Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+
+
+
 
 
 
@@ -134,7 +157,7 @@ public class ProVMainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 categoriasfinal = item;
-                Toast.makeText(getApplicationContext(),"Item: "+item,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Item: "+item,Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -149,14 +172,47 @@ public class ProVMainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-                //polvosfinal = item;
-                Toast.makeText(getApplicationContext(),"Item: "+item,Toast.LENGTH_SHORT).show();
+
+                // Verificar si se ha seleccionado un elemento
+                if (position != 0) { // Cambia 0 por el índice del elemento vacío en el Spinner
+                    //Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
+                    contador++;
+                    frecos = new Frescos(Integer.toHexString(contador), item);
+                    pro_polvos.add(frecos);
+                    adapter.notifyDataSetChanged();
+                }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
+
+
+        frescos_list = findViewById(R.id.frescos_txt);
+        adapterfrescos = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, frescosarr);
+        adapterfrescos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        frescos_list.setAdapter(adapterfrescos);
+        frescos_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                //polvosfinal = item;
+                if (position != 0) {
+                    //Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
+
+                    contador2++;
+                    //final String frescos = txtFrescos.getText().toString().trim();
+                    frecos = new Frescos(Integer.toString(contador2), item);
+                    pro_frecos.add(frecos);
+                    adapter2.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
 
 
@@ -172,7 +228,7 @@ public class ProVMainActivity extends AppCompatActivity {
         adapterfrescos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         frescos_list.setAdapter(adapterfrescos);
 
-        */
+*/
 
 
         checkBoxExhibidor = findViewById(R.id.exhibidor);
@@ -242,7 +298,7 @@ public class ProVMainActivity extends AppCompatActivity {
             return;
         }
         else{
-/*
+
             List<Frescos> lista = adapter.getPfList();
             String[] arraypolvos = new String[lista.size()];
             int i = 0;
@@ -276,7 +332,7 @@ public class ProVMainActivity extends AppCompatActivity {
                             if(response.equalsIgnoreCase("Se guardo correctamente.")){
                                 Toast.makeText(ProVMainActivity.this, "Se guardo correctamente.", Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
-                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             }
                             else{
@@ -298,6 +354,9 @@ public class ProVMainActivity extends AppCompatActivity {
 
                     String valorCadena1 = String.valueOf(isCheckedEx);
                     String valorCadena2 = String.valueOf(isCheckedPop);
+
+                    Log.d("------------------TAG------1--------------", jsonArray.toString());
+                    Log.d("------------------TAG-------2-------------", jsonArray2.toString());
 
 
                     String a_lat = "0";
@@ -326,9 +385,15 @@ public class ProVMainActivity extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(ProVMainActivity.this);
             requestQueue.add(request);
 
-            */
-
-            int a;
+            requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                @Override
+                public void onRequestFinished(Request<Object> request) {
+                    // Redirigir a PromotorActivity después de la inserción exitosa
+                    Intent intent = new Intent(ProVMainActivity.this, PromotorActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
 
         Log.d("TAG--------------------", "distrinuidor: " + distribuidor +
@@ -371,7 +436,9 @@ public class ProVMainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent intent = new Intent(this, PromotorActivity.class);
+        startActivity(intent);
+        // Finalizar la actividad actual
         finish();
     }
 
