@@ -3,6 +3,6 @@
     <solid android:color="#FFFFFF" /> <!-- Color de fondo del LinearLayout -->
     <stroke
         android:width="2dp"
-    android:color="#6276E1" /> <!-- Color del borde -->
+    android:color="#E8C680E4" /> <!-- Color del borde -->
     <corners android:radius="10dp" /> <!-- Radio de las esquinas del LinearLayout -->
 </shape>

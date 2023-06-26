@@ -5,4 +5,13 @@
         <item name="android:textSize">10sp</item> <!-- Ajusta el tamaño del texto según tus necesidades -->
     </style>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Agrega estas líneas para hacer transparente la barra de estado y la barra de navegación -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@android:color/holo_green_light</item>
+        <item name="android:colorBackground">@android:color/holo_green_light</item>
+    </style>
+    
+
 </resources>
