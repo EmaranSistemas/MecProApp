@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.sparrow.drawernavigation.Mercapp.MercAppActivity;
+import com.sparrow.drawernavigation.PreciosApp.PreciosActivity;
 import com.sparrow.drawernavigation.PromvApp.PromotorActivity;
 import com.sparrow.drawernavigation.R;
 
@@ -55,6 +56,28 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), "Mercap", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), MercAppActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        Button button3 = view.findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Prices", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), PreciosActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        Button button4 = view.findViewById(R.id.button4);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "No implementado!!", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getActivity(), MercAppActivity.class);
+                //startActivity(intent);
             }
         });
 

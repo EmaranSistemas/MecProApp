@@ -9,8 +9,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.sparrow.drawernavigation.Fragments.ConfiguracionFragment;
 import com.sparrow.drawernavigation.Fragments.HomeFragment;
@@ -18,13 +21,20 @@ import com.sparrow.drawernavigation.Fragments.InventarioFragment;
 import com.sparrow.drawernavigation.Fragments.ReportFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    FloatingActionButton fab;
 
+    BottomNavigationView bottomNavigationView;
     private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+//        fab = findViewById(R.id.fab);
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
+
     }
 
     @Override

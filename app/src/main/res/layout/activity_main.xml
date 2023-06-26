@@ -41,7 +41,4 @@
         app:menu="@menu/nav_menu"
         app:itemTextColor="#02091C"
         />
-
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -18,22 +18,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".PreciosApp.ReportPriceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PreciosApp.PreciosActivity"
+            android:exported="false" />
 
+
+        <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        -->
 
 
         <activity
             android:name=".Splash"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+            </activity>
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"></activity>
 
         <activity
             android:name=".PromvApp.ProVMainActivity"
@@ -50,7 +67,6 @@
         <activity
             android:name=".Mercapp.MercAppActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

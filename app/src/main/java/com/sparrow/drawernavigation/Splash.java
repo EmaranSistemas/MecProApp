@@ -27,13 +27,14 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         logo = findViewById(R.id.imageView);
         bk = findViewById(R.id.image);
+  /*
         lottieAnimationView = findViewById(R.id.lottie_layer_name);
 
         logo.animate().translationY(-1400).setDuration(2000).setStartDelay(5000);
         bk.animate().translationY(-1600).setDuration(2000).setStartDelay(5000);
         lottieAnimationView.animate().translationY(1600).setDuration(2000).setStartDelay(5000);
 
-
+*/
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -41,6 +42,6 @@ public class Splash extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }, 5000);
+        }, 4000);
     }
 }
