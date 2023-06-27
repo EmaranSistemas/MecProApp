@@ -2,139 +2,97 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="90dp">
+    android:layout_height="29dp">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true">
+            android:layout_height="23dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
 
             <TextView
-                android:id="@+id/id"
-                android:layout_width="27dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="1dp"
+                android:id="@+id/txt_store_id"
+                android:layout_width="15dp"
+                android:layout_height="12dp"
                 android:background="@drawable/rectagle"
                 android:gravity="center_vertical|center"
-                android:text="1111"
+                android:text="13"
                 android:textColor="@android:color/white"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/nombre"
-                android:layout_width="245dp"
-                android:layout_height="wrap_content"
-                android:text="PIMIENTA BLANCA MOLIDA FRASCO X 50 GRS"
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                android:translationX="8dp"
-                android:maxLines="2"
-                android:ellipsize="end" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:id="@+id/code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Código"
-                android:textSize="9sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/cod_ref"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text=""
-                android:textSize="9sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/cod_barras"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="-40dp"
-                android:layout_marginTop="16dp"
-                android:imeOptions="actionNext"
-                android:text="7750552000081"
-                android:textColor="@color/azul"
                 android:textSize="7sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/inventario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
+            <TextView
+                android:id="@+id/producto"
+                android:layout_width="64dp"
+                android:textAlignment="center"
+                android:layout_marginStart="2dp"
+                android:layout_height="18dp"
+                android:text="AJI AMARILLO"
+                android:padding="2dp"
+                android:textSize="7sp"
+                android:textStyle="bold"
                 android:gravity="center"
-                android:hint="inventario"
-                android:imeOptions="actionNext"
-                android:inputType="number"
-                android:textColor="@color/azul"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:background="@drawable/snipper1"
+                />
+
 
             <EditText
-                android:id="@+id/pedido"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:hint="pedido"
-                android:imeOptions="actionNext"
-                android:inputType="number"
-                android:textColor="@color/violeta"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:id="@+id/marca_txt"
+                android:layout_width="60dp"
+                android:layout_marginStart="6dp"
+                android:layout_height="23dp"
+                android:padding="5dp"
+                android:textSize="8dp"
+                android:textAlignment="center"
+                android:hint="marca"
+                android:background="@drawable/snipper1"
+                />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/frasco_txt"
+                android:layout_width="60dp"
+                android:layout_marginStart="7dp"
+                android:layout_height="23dp"
+                android:padding="5dp"
+                android:textSize="8dp"
+                android:textAlignment="center"
+                android:hint="frasco"
+                android:background="@drawable/snipper1"
+                />
+
+            <EditText
+                android:id="@+id/gramaje_txt"
+                android:layout_width="45dp"
+                android:layout_marginStart="7dp"
+                android:layout_height="23dp"
+                android:padding="5dp"
+                android:textSize="8dp"
+                android:textAlignment="center"
+                android:hint="50kg"
+                android:background="@drawable/snipper1"
+                />
+
+            <EditText
+                android:id="@+id/precio_txt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                >
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="55dp"
-                    android:layout_height="30dp"
-
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:shadowColor="#DCD7D5"
-                    android:text="+"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:textColorHighlight="#54BC62"
-                    android:textColorLink="#6EDC61"
-                    android:textSize="17dp"
-                    app:icon="@drawable/baseline_add_task_24"
-                    app:strokeColor="#954747"
-                    android:background="#467528"
-                    />
-
-            </LinearLayout>
-
-
+                android:layout_marginStart="10dp"
+                android:layout_height="23dp"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textSize="8dp"
+                android:hint="9.67"
+                android:background="@drawable/snipper1"
+                />
         </LinearLayout>
-
-
     </RelativeLayout>
 </LinearLayout>
 
