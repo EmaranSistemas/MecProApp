@@ -43,23 +43,17 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportPriceActivity extends AppCompatActivity  implements PriceAdapter.TextInputListener {
-
     private RecyclerView recyclerView;
-
     private PriceAdapter adapter;
     private prices pri;
     GpsTracker gpsTracker;
-
     public static ArrayList<prices> pricesArrayList = new ArrayList<>();
-
     String url ="https://emaransac.com/android/productos_retail.php";
     String url2 ="https://emaransac.com/android/productos_horeca.php";
     String url3 ="https://emaransac.com/android/productos_tradicional.php";
     String link;
     String catprod;
-
     EditText zona,marca,observaciones;
-
 
     String[] catproducto = {"--cat-prod--","Tradicional","Horeca","Retail"};
     ArrayAdapter<String> catproadapter;
@@ -79,7 +73,7 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-
+                link = " ";
                 if (position != 0) { // Cambia 0 por el índice del elemento vacío en el Spinner
                     catprod = item;
                     if(catprod.equals("Horeca")){
@@ -107,15 +101,11 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
 
         Button btnAgregar = findViewById(R.id.btn_agregar);
         final int[] clickCount = {0};
-
-
             btnAgregar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     clickCount[0]++;
-
                     if (clickCount[0] == 1) {
-
                         final String zonadistrito = zona.getText().toString().trim();//obligatorio
                         final String marca_ = marca.getText().toString().trim();//opcional
                         final String categoria_prod = catprod;
@@ -123,7 +113,6 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
                     pricesArrayList.add(new prices("001", "Ajo", "Marca1", "Frasco1", "100g", "10.99"));
                     pricesArrayList.add(new prices("002", "AJI AMARILLO", "Marca2", "Frasco2", "200g", "5.99"));
                     */
-
                         if (marca_.isEmpty()) {
                             Toast.makeText(ReportPriceActivity.this, "Ingrese Marca", Toast.LENGTH_SHORT).show();
                             clickCount[0] = 0;
@@ -137,23 +126,19 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
                             btnAgregar.setBackgroundColor(Color.parseColor("#FF01579B"));
                             btnAgregar.setText("GUARDAR");
 
-                            retrieveData(url);
+                            retrieveData(link);
                             adapter.notifyDataSetChanged();
                             Toast.makeText(ReportPriceActivity.this, "llenamos el array", Toast.LENGTH_SHORT).show();
                         }
-
-
                     } else if (clickCount[0] == 2) {
                         // Restaurar el color de fondo y el texto original en el segundo clic
                         btnAgregar.setBackgroundColor(Color.parseColor("#FF4CAF50"));
                         btnAgregar.setText("AGREGAR");
                         clickCount[0] = 0; // Reiniciar el contador de clics
-
                         pricesArrayList.clear();
                         adapter.notifyDataSetChanged();
                         EditText marca = findViewById(R.id.brand_txt);
                         marca.setText("");
-
                         EditText obs = findViewById(R.id.txt_observaciones);
                         obs.setText("");
                         insertData();
@@ -228,8 +213,6 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
         final String categoria_prod = catprod;
         final String observacines_ = observaciones.getText().toString().trim();
 
-
-
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("cargando...");
 
@@ -260,8 +243,10 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
 
 
 
+
             JSONArray jsonArray = new JSONArray(Arrays.asList(arraypolvos));
             Log.d("----------NUESTRO ARRAY--------", jsonArray.toString());
+            Toast.makeText(ReportPriceActivity.this,jsonArray.toString(),Toast.LENGTH_SHORT);
 
             progressDialog.show();
 
@@ -330,9 +315,6 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
             */
             Log.d("---REPORTE--DE--PRECIOS---", zonadistrito + "  " + categoria_prod + " "+marca+" "+observacines_+" ");
         }
-
-
-
         Log.d("---REPORTE--DE--PRECIOS---", zonadistrito + "  " + categoria_prod + " "+marca+" "+observacines_+" ");
     }
 
