@@ -125,6 +125,7 @@
                         android:hint="CLIENTE"
                         android:layout_height="wrap_content"
                         android:background="@drawable/snipper"
+                        android:inputType="textCapCharacters"
                         android:drawableStart="@drawable/baseline_account_circle_24"
                         />
                 </LinearLayout>
@@ -174,6 +175,7 @@
                    android:id="@+id/direccion_txt"
                    android:textSize="14dp"
                    android:hint="DIRECCIÓN"
+                   android:inputType="textCapCharacters"
                    android:layout_height="wrap_content"
                    android:background="@drawable/snipper"
                    android:drawableStart="@drawable/baseline_add_location_24"
@@ -197,6 +199,7 @@
                     android:textSize="14dp"
                     android:hint="NOMBRE COMERCIAL"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
                     android:background="@drawable/snipper"
                     android:drawableStart="@drawable/baseline_store_24"
                     />
@@ -387,6 +390,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="GUARDAR REPORTE"
+                android:inputType="textCapCharacters"
                 />
         </LinearLayout>
 
