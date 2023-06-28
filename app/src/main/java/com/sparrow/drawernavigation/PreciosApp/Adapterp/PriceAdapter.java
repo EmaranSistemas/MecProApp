@@ -33,8 +33,8 @@ public class PriceAdapter extends RecyclerView.Adapter<PriceAdapter.ViewHolder> 
         this.pfList = pricesArrayList;
     }
 
-    public List<prices> getPfList() {
-        return pfList;
+    public ArrayList<prices> getPfList() {
+        return productoArrayList;
     }
 
     @NonNull

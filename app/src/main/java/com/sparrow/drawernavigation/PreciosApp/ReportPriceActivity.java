@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,15 +21,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sparrow.drawernavigation.MainActivity;
 import com.sparrow.drawernavigation.PreciosApp.Adapterp.PriceAdapter;
 import com.sparrow.drawernavigation.PreciosApp.Entity.prices;
 import com.sparrow.drawernavigation.PromvApp.Entities.Frescos;
+import com.sparrow.drawernavigation.PromvApp.PromotorActivity;
 import com.sparrow.drawernavigation.R;
 import com.sparrow.drawernavigation.Ubication.GpsTracker;
 
@@ -47,6 +51,9 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
     private PriceAdapter adapter;
     private prices pri;
     GpsTracker gpsTracker;
+    List<String> listaProductos = new ArrayList<>();
+    List<String> listaPrecios = new ArrayList<>();
+    List<String> listaGramaje = new ArrayList<>();
     public static ArrayList<prices> pricesArrayList = new ArrayList<>();
     String url ="https://emaransac.com/android/productos_retail.php";
     String url2 ="https://emaransac.com/android/productos_horeca.php";
@@ -55,7 +62,10 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
     String catprod;
     EditText zona,marca,observaciones;
 
-    String[] catproducto = {"--cat-prod--","Tradicional","Horeca","Retail"};
+    String mybrand;
+    String myobs;
+
+    String[] catproducto = {"➤ Categoría ","Tradicional","Horeca","Retail"};
     ArrayAdapter<String> catproadapter;
     Spinner catlist;
 
@@ -73,7 +83,7 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-                link = " ";
+                link = "";
                 if (position != 0) { // Cambia 0 por el índice del elemento vacío en el Spinner
                     catprod = item;
                     if(catprod.equals("Horeca")){
@@ -84,19 +94,21 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
                         link = url;
                         catprod = "Retail";
                     }
-                    Toast.makeText(getApplicationContext(),"Item: "+item,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"Item: "+item,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(ReportPriceActivity.this, "Ingrese una categoría !!!", Toast.LENGTH_LONG).show();
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getApplicationContext(),"Ingrese Categoría",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Ingrese Categoría",Toast.LENGTH_SHORT).show();
             }
         });
 
 
         zona = findViewById(R.id.cliente_txt);
-        marca = findViewById(R.id.brand_txt);
-        observaciones = findViewById(R.id.txt_observaciones);
+        marca = findViewById(R.id.brand_txt_marca);
+        observaciones = findViewById(R.id.txt_observaciones_);
 
 
         Button btnAgregar = findViewById(R.id.btn_agregar);
@@ -107,20 +119,29 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
                     clickCount[0]++;
                     if (clickCount[0] == 1) {
                         final String zonadistrito = zona.getText().toString().trim();//obligatorio
-                        final String marca_ = marca.getText().toString().trim();//opcional
+                        final String marca_txt = marca.getText().toString().trim();//opcional
                         final String categoria_prod = catprod;
+                        mybrand = marca_txt;
+
+
                     /*
                     pricesArrayList.add(new prices("001", "Ajo", "Marca1", "Frasco1", "100g", "10.99"));
                     pricesArrayList.add(new prices("002", "AJI AMARILLO", "Marca2", "Frasco2", "200g", "5.99"));
                     */
-                        if (marca_.isEmpty()) {
+                        if (zonadistrito.isEmpty()) {
+                            Toast.makeText(ReportPriceActivity.this, "Ingrese Zona/Distrito", Toast.LENGTH_SHORT).show();
+                            clickCount[0] = 0;
+                            return;
+                        }else if (marca_txt.isEmpty()) {
                             Toast.makeText(ReportPriceActivity.this, "Ingrese Marca", Toast.LENGTH_SHORT).show();
                             clickCount[0] = 0;
                             return;
-                        } else if (categoria_prod.isEmpty()) {
-                            Toast.makeText(ReportPriceActivity.this, "Ingrese Categoria producto", Toast.LENGTH_SHORT).show();
-                            clickCount[0] = 0;
-                            return;
+                        }else if (categoria_prod.isEmpty()) {
+                                // El valor de catprod no es válido
+                                Toast.makeText(ReportPriceActivity.this, "Ingrese una categoría de producto válida", Toast.LENGTH_SHORT).show();
+                                clickCount[0] = 0;
+                                return;
+
                         } else {
                             // Cambiar el color de fondo del botón y el texto en el primer clic
                             btnAgregar.setBackgroundColor(Color.parseColor("#FF01579B"));
@@ -128,36 +149,39 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
 
                             retrieveData(link);
                             adapter.notifyDataSetChanged();
-                            Toast.makeText(ReportPriceActivity.this, "llenamos el array", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ReportPriceActivity.this, "Lista Productos", Toast.LENGTH_SHORT).show();
+
+                            //lista = adapter.getPfList();
+                            //Toast.makeText(ReportPriceActivity.this,"SIZE: "+lista.size(),Toast.LENGTH_LONG).show();
                         }
-                    } else if (clickCount[0] == 2) {
+                    } else if (clickCount[0] == 2 && !catprod.equals("Categoría")) {
                         // Restaurar el color de fondo y el texto original en el segundo clic
                         btnAgregar.setBackgroundColor(Color.parseColor("#FF4CAF50"));
                         btnAgregar.setText("AGREGAR");
                         clickCount[0] = 0; // Reiniciar el contador de clics
                         pricesArrayList.clear();
                         adapter.notifyDataSetChanged();
-                        EditText marca = findViewById(R.id.brand_txt);
-                        marca.setText("");
-                        EditText obs = findViewById(R.id.txt_observaciones);
-                        obs.setText("");
-                        insertData();
 
-                        Toast.makeText(ReportPriceActivity.this, "Se guardan los datos", Toast.LENGTH_SHORT).show();
+                        insertData();
+                        marca.setText("");
+                        observaciones.setText("");
+
+
+                        //Toast.makeText(ReportPriceActivity.this, "Se guardan los datos", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
 
 
         recyclerView = findViewById(R.id.recycler_price_view);
-        adapter = new PriceAdapter(this,pricesArrayList,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new PriceAdapter(this,pricesArrayList,this);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onTextInputClicked(String id, String producto, String frasco, String grameje, String precio) {
-        Log.d("------------------TAG PRICE--------------------",id + " -- " + producto + " -- " + marca + " -- " + frasco + " -- " + grameje + " -- " + precio);
+        //Log.d("------------------TAG PRICE--------------------",id + " -- " + producto + " -- " + marca + " -- " + frasco + " -- " + grameje + " -- " + precio);
     }
 
     public void retrieveData(String url){
@@ -179,6 +203,12 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
                                     String nombre = object.getString("nombre");
                                     pri = new prices(id,nombre,"","","","");
                                     pricesArrayList.add(pri);
+                                    // add data--> local array
+                                    //productos.add(nombre);
+                                    listaProductos.add(nombre);
+                                    listaGramaje.add("50");
+                                    listaPrecios.add("9.5");
+                                    //Toast.makeText(ReportPriceActivity.this,"SIZE: "+adapter.getPfList().size(),Toast.LENGTH_LONG).show();
                                     adapter.notifyDataSetChanged();
                                 }
                             }
@@ -200,18 +230,14 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
 
 
     private void insertData() {
-        try { //Request Permission if not permitted
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         final String zonadistrito = zona.getText().toString().trim();//obligatorio
-        final String marca_ = marca.getText().toString().trim();//opcional
+        final String marca_ = mybrand;
         final String categoria_prod = catprod;
         final String observacines_ = observaciones.getText().toString().trim();
+        //Toast.makeText(ReportPriceActivity.this,"OBS--->"+observacines_,Toast.LENGTH_SHORT);
+        Log.d("REPORTE--DE--PRECIOS ZONA DISTRITO-->", zonadistrito
+                + "  CATEGORIA : --> " + categoria_prod
+                + " BRABDI:--> "+marca_+" OBSERVACIONES :--> "+observacines_+" ");
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("cargando...");
@@ -230,38 +256,34 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
         }
         else{
 
-
-
-            List<prices> lista = adapter.getPfList();
+            /*
             String[] arraypolvos = new String[lista.size()];
             int i = 0;
             for (prices f : lista) {
-                arraypolvos[i] = f.getItem();
+                Toast.makeText(ReportPriceActivity.this,"PRODUCTO: "+f.getProducto(),Toast.LENGTH_SHORT);
+                arraypolvos[i] = f.getProducto();
                 i++;
-            }
+            }*/
 
 
-
-
-
-            JSONArray jsonArray = new JSONArray(Arrays.asList(arraypolvos));
-            Log.d("----------NUESTRO ARRAY--------", jsonArray.toString());
-            Toast.makeText(ReportPriceActivity.this,jsonArray.toString(),Toast.LENGTH_SHORT);
-
+/*
+            listaProductos.add("comino");
+            listaProductos.add("comino1");
+            listaProductos.add("comino2");
+            listaProductos.add("comino3");
+*/
             progressDialog.show();
 
- /*
 
-
-            StringRequest request = new StringRequest(Request.Method.POST, "https://emaransac.com/android/insertar_reporte_promotor.php",
+            StringRequest request = new StringRequest(Request.Method.POST, "https://emaransac.com/android/insertar_reporte_precios.php",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             if(response.equalsIgnoreCase("Se guardo correctamente.")){
                                 Toast.makeText(ReportPriceActivity.this, "Se guardo correctamente.", Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                finish();
+                                //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                //finish();
                             }
                             else{
                                 Toast.makeText(ReportPriceActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -288,11 +310,13 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
 
 
 
-
+                    //Log.d("---REPORTE--DE--PRECIOS---", observacines_+">>>>>>>>>>>> ");
                     params.put("zona",zonadistrito);
                     params.put("catprod",categoria_prod);
                     params.put("marca",marca_);
-                    params.put("list_detalle",jsonArray.toString());
+                    params.put("list_detalle", new JSONArray(listaProductos).toString());
+                    params.put("list_gramaje", new JSONArray(listaGramaje).toString());
+                    params.put("list_precio", new JSONArray(listaPrecios).toString());
                     params.put("observaciones",observacines_);
                     params.put("longitud",a_lon);
                     params.put("latitud",a_lat);
@@ -303,19 +327,20 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
             requestQueue.add(request);
 
             requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+
                 @Override
                 public void onRequestFinished(Request<Object> request) {
-                    // Redirigir a PromotorActivity después de la inserción exitosa
-                    Intent intent = new Intent(ReportPriceActivity.this, PromotorActivity.class);
+                    /*
+                     //Redirigir a PromotorActivity después de la inserción exitosa
+                    Intent intent = new Intent(ReportPriceActivity.this, ReportPriceActivity.class);
                     startActivity(intent);
-                    finish();
+                    finish();*/
+                    listaProductos.clear();
                 }
             });
-
-            */
-            Log.d("---REPORTE--DE--PRECIOS---", zonadistrito + "  " + categoria_prod + " "+marca+" "+observacines_+" ");
         }
-        Log.d("---REPORTE--DE--PRECIOS---", zonadistrito + "  " + categoria_prod + " "+marca+" "+observacines_+" ");
+
+        //Log.d("---REPORTE--DE--PRECIOS---", zonadistrito + "  " + categoria_prod + " "+marca+" "+observacines_+" ");
     }
 
     public String getLocs(int ID) { //Get Current Lat and Lon 1=lat, 2=lon

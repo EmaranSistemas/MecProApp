@@ -125,7 +125,7 @@
             />
 
             <EditText
-                android:id="@+id/brand_txt"
+                android:id="@+id/brand_txt_marca"
                 android:layout_width="140dp"
                 android:padding="5dp"
                 android:textSize="13dp"
@@ -273,7 +273,7 @@
                 />
 
             <EditText
-                android:id="@+id/txt_observaciones"
+                android:id="@+id/txt_observaciones_"
                 android:layout_width="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
