@@ -252,9 +252,9 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="15dp"
+            android:layout_height="190dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginTop="10dp"
 
             app:cardCornerRadius="8dp"
@@ -302,9 +302,9 @@
         </LinearLayout>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="15dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
             app:cardCornerRadius="8dp"
             android:layout_marginTop="10dp"
             app:cardElevation="4dp"
@@ -356,6 +356,7 @@
             android:padding="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:id="@+id/ventas_txt"
             android:textSize="14dp"
             android:hint="VENTAS S/."
@@ -363,6 +364,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/snipper"
             android:drawableStart="@drawable/baseline_monetization_on_24"
+            android:layout_gravity="end"
             />
 
         <LinearLayout
