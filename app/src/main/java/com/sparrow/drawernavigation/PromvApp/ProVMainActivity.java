@@ -87,6 +87,16 @@ public class ProVMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pro_vmain);
 
+/*
+    for(int i=0; i<pro_polvos.size(); i++){
+        frecos = new Frescos(Integer.toHexString(contador), pro_polvos.get(i));
+        pro_polvos.add(frecos);
+        adapter.notifyDataSetChanged();
+    }
+
+    */
+
+
 
         try { //Request Permission if not permitted
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
