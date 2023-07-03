@@ -54,11 +54,19 @@ public class MercAppActivity extends AppCompatActivity {
 
 
         FloatingActionButton btn1 = findViewById(R.id.summaryList);
-
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MercAppActivity.this, SummaryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        FloatingActionButton btn2 = findViewById(R.id.registroList);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MercAppActivity.this, Register_Activity.class);
                 startActivity(intent);
             }
         });

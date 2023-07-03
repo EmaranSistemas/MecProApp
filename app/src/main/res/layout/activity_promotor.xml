@@ -10,7 +10,7 @@
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="REPORTE SEMANAL"
+        android:text="REPORTE DIARIO"
         android:textStyle="bold"
         android:textSize="18dp"
         android:gravity="center_vertical|center"

@@ -110,7 +110,7 @@
 
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginStart="10dp"
@@ -193,7 +193,7 @@
                 android:layout_marginStart="10dp"
                 >
                 <EditText
-                    android:layout_width="200dp"
+                    android:layout_width="170dp"
                     android:padding="5dp"
                     android:id="@+id/nombre_co"
                     android:textSize="14dp"

@@ -46,7 +46,7 @@ public class ProVMainActivity extends AppCompatActivity {
     private RecyclerView recyclerView, recyclerView2;
     private PfAdapter adapter, adapter2;
 
-    String[] distribuidores = {"Adriel","Francisco","Clara","Rodolfo","Juan Carlos","María","Carmen","Mirtha","Gerardo"};
+    String[] distribuidores = {"Adriel","Francisco","Clara","Rodolfo","Juan Carlos","María","Carmen","Mirtha","Gerardo","Rommel"};
     String[] categorias = {"Bodega","Minimarket","Supermercado","Especiería","Puesto de Mercado",
             "Tienda de Abarrotes","Food Truck","Puesto de Comida","Snack","Carniceria","Pizzeria","Otros"};
     String[] polvosarr = {"------SELECCIONE------",
@@ -62,7 +62,11 @@ public class ProVMainActivity extends AppCompatActivity {
             ,"OREGANO SELECTO BATAN X 42 SBS",
             "EL VERDE BATAN GIGANTE x 27 SBS"};
 
-    String[] frescosarr = {"------SELECCIONE------","AJI PANCA FRESCO BATAN x 24 SBS","AJI AMARILLO FRESCO BATAN x24 SBS","AJO FRESCO BATAN x 24 SBS","CULANTRO FRESCO BATAN x 24 SBS"};
+    String[] frescosarr = {"------SELECCIONE------",
+            "AJI PANCA FRESCO BATAN x 24 SBS",
+            "AJI AMARILLO FRESCO BATAN x24 SBS",
+            "AJO FRESCO BATAN x 24 SBS",
+            "CULANTRO FRESCO BATAN x 24 SBS"};
 
     String Distribuidor;
     String categoriasfinal;
