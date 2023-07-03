@@ -23,4 +23,15 @@ public class Frescos {
     public String setNombre(){
         return this.name;
     }
+
+    private boolean isChecked;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
 }

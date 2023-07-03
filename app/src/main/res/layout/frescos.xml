@@ -69,12 +69,13 @@
         <EditText
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:text="38"
+            android:hint="0"
             android:id="@+id/value_count"
             android:textSize="15dp"
             android:textAlignment="center"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="70dp"
+            android:inputType="number"
             />
             <Button
                 android:layout_width="33dp"
@@ -89,7 +90,7 @@
                 />
 
                 <CheckBox
-                    android:id="@+id/exhibidor"
+                    android:id="@+id/validado"
                     android:layout_marginTop="5dp"
                     android:layout_width="35dp"
                     android:gravity="center_horizontal"

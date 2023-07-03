@@ -49,9 +49,18 @@ public class ProVMainActivity extends AppCompatActivity {
     String[] distribuidores = {"Adriel","Francisco","Clara","Rodolfo","Juan Carlos","María","Carmen","Mirtha","Gerardo"};
     String[] categorias = {"Bodega","Minimarket","Supermercado","Especiería","Puesto de Mercado",
             "Tienda de Abarrotes","Food Truck","Puesto de Comida","Snack","Carniceria","Pizzeria","Otros"};
-    String[] polvosarr = {"------SELECCIONE------","SAZONADOR COMPLETO  GIGANTE X 42 SBS","COMINO MOLIDO GIGANTE X 42 SBS","PIMIENTA BATAN GIGANTE X 42 SBS","PALILLO BATAN  GIGANTE X 42 SBS",
-            "TUCO SAZON SALSA BATAN GIGANTE X 42 SBS","AJO BATAN GIGANTE X 42 SBS","CANELA MOLIDA GIGANTE X 42 SBS","EL VERDE BATAN GIGANTE X 42 SBS","KION MOLIDO BATAN GIGANTE X 42 SBS"
-            ,"OREGANO SELECTO BATAN X 42 SBS","EL VERDE BATAN GIGANTE x 27 SBS"};
+    String[] polvosarr = {"------SELECCIONE------",
+            "SAZONADOR COMPLETO  GIGANTE X 42 SBS",
+            "COMINO MOLIDO GIGANTE X 42 SBS",
+            "PIMIENTA BATAN GIGANTE X 42 SBS",
+            "PALILLO BATAN  GIGANTE X 42 SBS",
+            "TUCO SAZON SALSA BATAN GIGANTE X 42 SBS",
+            "AJO BATAN GIGANTE X 42 SBS",
+            "CANELA MOLIDA GIGANTE X 42 SBS",
+            "EL VERDE BATAN GIGANTE X 42 SBS",
+            "KION MOLIDO BATAN GIGANTE X 42 SBS"
+            ,"OREGANO SELECTO BATAN X 42 SBS",
+            "EL VERDE BATAN GIGANTE x 27 SBS"};
 
     String[] frescosarr = {"------SELECCIONE------","AJI PANCA FRESCO BATAN x 24 SBS","AJI AMARILLO FRESCO BATAN x24 SBS","AJO FRESCO BATAN x 24 SBS","CULANTRO FRESCO BATAN x 24 SBS"};
 
@@ -111,14 +120,27 @@ public class ProVMainActivity extends AppCompatActivity {
         pro_polvos.clear();
 
 
+        for (int i = 1; i < polvosarr.length; i++) {
+            frecos = new Frescos(Integer.toHexString(i), polvosarr[i]);
+            pro_polvos.add(frecos);
+        }
+
+        for (int i = 1; i < frescosarr.length; i++) {
+            frecos = new Frescos(Integer.toHexString(i), frescosarr[i]);
+            pro_frecos.add(frecos);
+        }
+
+
+
+
         recyclerView = findViewById(R.id.mypolvos);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PfAdapter(this, pro_polvos);
+        adapter = new PfAdapter(this, pro_polvos,pro_polvos);
         recyclerView.setAdapter(adapter);
 
         recyclerView2 = findViewById(R.id.myfrecos);
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        adapter2 = new PfAdapter(this, pro_frecos);
+        adapter2 = new PfAdapter(this, pro_frecos,pro_frecos);
         recyclerView2.setAdapter(adapter2);
 
 /*
@@ -186,10 +208,10 @@ public class ProVMainActivity extends AppCompatActivity {
                 // Verificar si se ha seleccionado un elemento
                 if (position != 0) { // Cambia 0 por el índice del elemento vacío en el Spinner
                     //Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
-                    contador++;
-                    frecos = new Frescos(Integer.toHexString(contador), item);
-                    pro_polvos.add(frecos);
-                    adapter.notifyDataSetChanged();
+                    //contador++;
+                    //frecos = new Frescos(Integer.toHexString(contador), item);
+                    //pro_polvos.add(frecos);
+                    //adapter.notifyDataSetChanged();
                 }
             }
 
@@ -212,11 +234,11 @@ public class ProVMainActivity extends AppCompatActivity {
                 if (position != 0) {
                     //Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
 
-                    contador2++;
+                    //contador2++;
                     //final String frescos = txtFrescos.getText().toString().trim();
-                    frecos = new Frescos(Integer.toString(contador2), item);
-                    pro_frecos.add(frecos);
-                    adapter2.notifyDataSetChanged();
+                    //frecos = new Frescos(Integer.toString(contador2), item);
+                    //pro_frecos.add(frecos);
+                    //adapter2.notifyDataSetChanged();
                 }
             }
             @Override
@@ -309,7 +331,8 @@ public class ProVMainActivity extends AppCompatActivity {
         }
         else{
 
-            List<Frescos> lista = adapter.getPfList();
+            //List<Frescos> lista = adapter.getPfList_r();
+            List<Frescos> lista = adapter.getCheckedItems();
             String[] arraypolvos = new String[lista.size()];
             int i = 0;
             for (Frescos f : lista) {
@@ -318,7 +341,7 @@ public class ProVMainActivity extends AppCompatActivity {
             }
 
 
-            List<Frescos> lista2 = adapter2.getPfList();
+            List<Frescos> lista2 = adapter2.getCheckedItems();
             String[] arraypolvos2 = new String[lista2.size()];
             int i2 = 0;
             for (Frescos f2 : lista2) {
