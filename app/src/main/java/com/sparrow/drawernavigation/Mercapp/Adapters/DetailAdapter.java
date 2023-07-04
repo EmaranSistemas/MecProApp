@@ -3,10 +3,12 @@ package com.sparrow.drawernavigation.Mercapp.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,43 +38,28 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DetailViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DetailViewHolder holder, final int position) {
         Register detalle = detalleList.get(position);
         holder.tvID.setText(detalle.getId());
         holder.tvFecha.setText(detalle.getFecha());
         holder.tvLocal.setText(detalle.getLocal());
         holder.tvMotivo.setText(detalle.getMotivo());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        final int currentPosition = position; // Declarar una variable final adicional
+
+        holder.btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showPopupWithOptions(detalle.getId());
+            public void onClick(View view) {
+                holder.btnFinalizar.setBackgroundColor(Color.parseColor("#FF01579B"));
+                holder.btnFinalizar.setTextColor(Color.WHITE);
+                holder.btnFinalizar.setText("FINALIZADO");
+
+                // Mostrar un mensaje Toast usando la variable currentPosition
+                Toast.makeText(context, "Button clicked for position: " + currentPosition, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void showPopupWithOptions(String itemID) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Opciones")
-                .setMessage("¿Deseas finalizar?")
-                .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Acción a realizar al finalizar
-                        Toast.makeText(context, "Finalizado: " + itemID, Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
 
     @Override
     public int getItemCount() {
@@ -84,6 +71,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailView
         TextView tvFecha;
         TextView tvLocal;
         TextView tvMotivo;
+        Button btnFinalizar; // Add the button reference
 
         DetailViewHolder(View itemView) {
             super(itemView);
@@ -91,6 +79,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailView
             tvFecha = itemView.findViewById(R.id.fecha_txt_r);
             tvLocal = itemView.findViewById(R.id.local_txt_r);
             tvMotivo = itemView.findViewById(R.id.motivo_txt_r);
+            btnFinalizar = itemView.findViewById(R.id.btn_finalizar); // Initialize the button reference
         }
     }
 }
