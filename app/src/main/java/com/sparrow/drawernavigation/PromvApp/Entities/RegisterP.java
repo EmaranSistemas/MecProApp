@@ -1,13 +1,13 @@
-package com.sparrow.drawernavigation.Mercapp.Entity;
+package com.sparrow.drawernavigation.PromvApp.Entities;
 
-public class Register {
+public class RegisterP {
     String id, fecha, local, motivo, fechafin,tiempo;
     boolean isFinalizado;
 
-    public Register() {
+    public RegisterP() {
     }
 
-    public Register(String id, String fecha, String local, String motivo, String fechafin,String tiempo) {
+    public RegisterP(String id, String fecha, String motivo, String fechafin,String tiempo) {
         this.id = id;
         this.fecha = fecha;
         this.local = local;
@@ -31,14 +31,6 @@ public class Register {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
-    }
-
-    public String getLocal() {
-        return local;
-    }
-
-    public void setLocal(String local) {
-        this.local = local;
     }
 
     public String getMotivo() {

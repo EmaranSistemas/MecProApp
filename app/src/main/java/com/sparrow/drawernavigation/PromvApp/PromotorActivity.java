@@ -13,7 +13,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sparrow.drawernavigation.MainActivity;
+import com.sparrow.drawernavigation.Mercapp.MercAppActivity;
+import com.sparrow.drawernavigation.Mercapp.Register_Activity;
 import com.sparrow.drawernavigation.PromvApp.Adapters.DetalleAdapter;
 import com.sparrow.drawernavigation.PromvApp.Entities.detalle;
 import com.sparrow.drawernavigation.R;
@@ -41,6 +44,15 @@ public class PromotorActivity extends AppCompatActivity {
         listView = findViewById(R.id.myListView_promotor);
         adapter = new DetalleAdapter(this,employeeArrayList);
         listView.setAdapter(adapter);
+
+        FloatingActionButton btn2 = findViewById(R.id.register_btn_por);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PromotorActivity.this, RegisterP_Activity.class);
+                startActivity(intent);
+            }
+        });
 
         retrieveData();
     }

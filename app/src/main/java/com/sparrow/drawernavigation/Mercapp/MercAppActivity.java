@@ -8,6 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,12 +40,25 @@ public class MercAppActivity extends AppCompatActivity {
     String url = "https://emaransac.com/android/mostrar_tiendas.php";
     Stores stores;
 
+    private WebView webView;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merc_app);
+
+
+
+/*
+        webView = findViewById(R.id.webView);
+        webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl("http://emadata.emaransac.com:4000/public/dashboard/cc3c8161-8f8f-4beb-ab14-47db049ddc10?escoge_la_fecha=past12months~");
+
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        */
 
         /*
         GPS TRACKER

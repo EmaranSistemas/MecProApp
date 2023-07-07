@@ -24,7 +24,9 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/buttonLayout"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="16dp">
+            >
+
+
 
             <ListView
                 android:id="@+id/myListView"
@@ -41,6 +43,15 @@
             android:orientation="horizontal">
 
         </LinearLayout>
+
+        <!--
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="500dp"
+            />
+        -->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/summaryList"

@@ -6,11 +6,19 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -94,9 +102,10 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
         searchView = findViewById(R.id.search_view);
         searchView.clearFocus();
 
-        FloatingActionButton btn1 = findViewById(R.id.btn1);
-        FloatingActionButton btn2 = findViewById(R.id.btn2);
+        //FloatingActionButton btn1 = findViewById(R.id.btn1);
+        //FloatingActionButton btn2 = findViewById(R.id.btn2);
 
+        /*
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,9 +119,8 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
                 scanner();
             }
         });
-
+*/
         searchView.setOnQueryTextListener(this);
-
 
         /*
 
@@ -188,6 +196,99 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
         }else{
             Toast.makeText(ProductListActivity.this,"It is empty",Toast.LENGTH_LONG).show();
         }
+
+
+        Button btnMostrarDialogo = findViewById(R.id.btnMostrarDialogo);
+        btnMostrarDialogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProductListActivity.this);
+                builder.setTitle("Activos Empresa");
+
+                // Crear un contenedor para el EditText y el CheckBox
+                LinearLayout container = new LinearLayout(ProductListActivity.this);
+                container.setOrientation(LinearLayout.VERTICAL);
+
+                // Crear la casilla de verificación (CheckBox)
+                final CheckBox rejilla = new CheckBox(ProductListActivity.this);
+                rejilla.setText("Rejilla Frasco");
+                container.addView(rejilla);
+
+                // Crear el campo de entrada (EditText)
+                final EditText rejillatext = new EditText(ProductListActivity.this);
+                rejillatext.setHint("Num Rejilla");
+                rejillatext.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                rejillatext.setInputType(InputType.TYPE_CLASS_NUMBER);
+                container.addView(rejillatext);
+
+                // Crear la casilla de verificación (CheckBox)
+                final CheckBox checkBox = new CheckBox(ProductListActivity.this);
+                checkBox.setText("Exh. Acrilico Sobres");
+                container.addView(checkBox);
+
+                // Crear el campo de entrada (EditText)
+                final EditText editText = new EditText(ProductListActivity.this);
+                editText.setHint("Num Exh Acrilico Sobres");
+                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                container.addView(editText);
+
+                // Crear la casilla de verificación (CheckBox)
+                final CheckBox ExhFrasco = new CheckBox(ProductListActivity.this);
+                ExhFrasco.setText("Exh. Acrilico Frasco");
+                container.addView(ExhFrasco);
+
+                // Crear el campo de entrada (EditText)
+                final EditText ExhFrascoTxt = new EditText(ProductListActivity.this);
+                ExhFrascoTxt.setHint("Num Exh acrilico Frascos");
+                ExhFrascoTxt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                ExhFrascoTxt.setInputType(InputType.TYPE_CLASS_NUMBER);
+                container.addView(ExhFrascoTxt);
+
+                // Crear la casilla de verificación (CheckBox)
+                final CheckBox ExhSales = new CheckBox(ProductListActivity.this);
+                ExhSales.setText("Exh. 4 Nvl Sales");
+                container.addView(ExhSales);
+
+                // Crear el campo de entrada (EditText)
+                final EditText ExhSalesTxt = new EditText(ProductListActivity.this);
+                ExhSalesTxt.setHint("Num Exh. 4 Nvl Sales");
+                ExhSalesTxt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                ExhSalesTxt.setInputType(InputType.TYPE_CLASS_NUMBER);
+                container.addView(ExhSalesTxt);
+
+                // Crear la casilla de verificación (CheckBox)
+                final CheckBox Modulo = new CheckBox(ProductListActivity.this);
+                Modulo.setText("Módulo Mdf");
+                container.addView(Modulo);
+
+                // Crear el campo de entrada (EditText)
+                final EditText ModuloTxt = new EditText(ProductListActivity.this);
+                ModuloTxt.setHint("Num Modulo Mdf");
+                ModuloTxt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                ModuloTxt.setInputType(InputType.TYPE_CLASS_NUMBER);
+                container.addView(ModuloTxt);
+                // Configurar los botones del diálogo
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String textoIngresado = editText.getText().toString();
+                        boolean isChecked = checkBox.isChecked();
+                        // Realizar acciones con los datos ingresados y seleccionados
+                        // ...
+                    }
+                });
+                builder.setNegativeButton("Cancelar", null);
+
+                // Establecer el contenedor como la vista del diálogo
+                builder.setView(container);
+
+                // Mostrar el diálogo
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
     }
     @Override
     public void onItemClick(int position) {

@@ -1,13 +1,10 @@
-package com.sparrow.drawernavigation.Ubication;
+package com.sparrow.drawernavigation.PromvApp;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,9 +13,7 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
-import androidx.core.app.ActivityCompat;
-
-public class GpsTracker extends Service implements LocationListener {
+public class location extends Service implements LocationListener {
     private final Context mContext;
 
     // flag for GPS status
@@ -43,7 +38,7 @@ public class GpsTracker extends Service implements LocationListener {
     // Declaring a Location Manager
     protected LocationManager locationManager;
 
-    public GpsTracker(Context context) {
+    public location(Context context) {
         this.mContext = context;
         getLocation();
     }
@@ -105,12 +100,13 @@ public class GpsTracker extends Service implements LocationListener {
      * Stop using GPS listener
      * Calling this function will stop using GPS in your app
      */
-
+/*
     public void stopUsingGPS() {
         if (locationManager != null) {
-            locationManager.removeUpdates(GpsTracker.this);
+            locationManager.removeUpdates(com.sparrow.drawernavigation.Ubication.location.this);
         }
     }
+    */
 
     /**
      * Function to get latitude

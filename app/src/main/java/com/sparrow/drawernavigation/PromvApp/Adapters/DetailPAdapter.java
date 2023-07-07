@@ -1,63 +1,46 @@
-package com.sparrow.drawernavigation.Mercapp.Adapters;
+package com.sparrow.drawernavigation.PromvApp.Adapters;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.sparrow.drawernavigation.Mercapp.Entity.Register;
-import com.sparrow.drawernavigation.Mercapp.Register_Activity;
+import com.sparrow.drawernavigation.PromvApp.Entities.RegisterP;
 import com.sparrow.drawernavigation.R;
-import com.sparrow.drawernavigation.Ubication.GpsTracker;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailViewHolder> {
+public class DetailPAdapter extends RecyclerView.Adapter<DetailPAdapter.DetailViewHolder> {
     private Context context;
-    private List<Register> detalleList;
+    private List<RegisterP> detalleList;
 
 
     private ButtonClickListener buttonClickListener;
 
-    public DetailAdapter(Context context, List<Register> detalleList) {
+    public DetailPAdapter(Context context, List<RegisterP> detalleList) {
         this.context = context;
         this.detalleList = detalleList;
     }
 
     @NonNull
     @Override
-    public DetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_register, parent, false);
-        return new DetailViewHolder(view);
+    public DetailPAdapter.DetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_registerp, parent, false);
+        return new DetailPAdapter.DetailViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DetailViewHolder holder, final int position) {
-        Register detalle = detalleList.get(position);
+    public void onBindViewHolder(@NonNull DetailPAdapter.DetailViewHolder holder, final int position) {
+        RegisterP detalle = detalleList.get(position);
         holder.tvID.setText(detalle.getId());
         holder.tvFecha.setText(detalle.getFecha());
-        holder.tvLocal.setText(detalle.getLocal());
         holder.tvFechafin.setText(detalle.getFechafin());
         holder.tvtiempo.setText(detalle.getTiempo());
         holder.tvMotivo.setText(detalle.getMotivo());
@@ -86,12 +69,11 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailView
 
                 // Obtener el valor de tvID
                 String tvIDValue = detalle.getId();
-                String tvIDLocal = detalle.getLocal();
                 String tvIDMotivo = detalle.getMotivo();
 
                 // Llamar al método onButtonClick de la interfaz
                 if (buttonClickListener != null) {
-                    buttonClickListener.onButtonClick(tvIDValue,tvIDLocal,tvIDMotivo);
+                    buttonClickListener.onButtonClick(tvIDValue,tvIDMotivo);
                 }
 
                 // Actualizar el estado de isFinalizado en el modelo
@@ -120,20 +102,19 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailView
 
         DetailViewHolder(View itemView) {
             super(itemView);
-            tvID = itemView.findViewById(R.id.id_txt_r);
-            tvFecha = itemView.findViewById(R.id.fecha_txt_r);
-            tvLocal = itemView.findViewById(R.id.local_txt_r);
-            tvMotivo = itemView.findViewById(R.id.motivo_txt_r);
-            tvFechafin = itemView.findViewById(R.id.fecha_txt_rn);
-            btnFinalizar = itemView.findViewById(R.id.btn_finalizar); // Initialize the button reference
-            tvtiempo = itemView.findViewById(R.id.horas_txt);
+            tvID = itemView.findViewById(R.id.id_txt_rp);
+            tvFecha = itemView.findViewById(R.id.fecha_txt_p);
+            tvMotivo = itemView.findViewById(R.id.motivo_txt_p);
+            tvFechafin = itemView.findViewById(R.id.fecha_txt_pro);
+            btnFinalizar = itemView.findViewById(R.id.btn_finalizar_p); // Initialize the button reference
+            tvtiempo = itemView.findViewById(R.id.horas_txt_p);
         }
     }
-    public void setButtonClickListener(ButtonClickListener listener) {
+    public void setButtonClickListener(DetailPAdapter.ButtonClickListener listener) {
         this.buttonClickListener = listener;
     }
 
     public interface ButtonClickListener {
-        void onButtonClick(String tvID,String local,String motivo);
+        void onButtonClick(String tvID,String motivo);
     }
 }

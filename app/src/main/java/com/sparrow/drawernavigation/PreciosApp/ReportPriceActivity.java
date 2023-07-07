@@ -74,6 +74,14 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_price);
 
+        try { //Request Permission if not permitted
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         catlist = findViewById(R.id.catprod_txt);
         catproadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, catproducto);
@@ -273,8 +281,14 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
             listaProductos.add("comino3");
 */
             progressDialog.show();
+            String a_lat = "0";
+            String a_lon = "0";
+            a_lat = getLocs(1);
+            a_lon = getLocs(2);
 
 
+            String finalA_lon = a_lon;
+            String finalA_lat = a_lat;
             StringRequest request = new StringRequest(Request.Method.POST, "https://emaransac.com/android/insertar_reporte_precios.php",
                     new Response.Listener<String>() {
                         @Override
@@ -303,10 +317,7 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
                     Map<String,String> params = new HashMap<String,String>();
 
 
-                    String a_lat = "0";
-                    String a_lon = "0";
-                    a_lat = getLocs(1);
-                    a_lon = getLocs(2);
+
 
 
 
@@ -318,8 +329,8 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
                     params.put("list_gramaje", new JSONArray(listaGramaje).toString());
                     params.put("list_precio", new JSONArray(listaPrecios).toString());
                     params.put("observaciones",observacines_);
-                    params.put("longitud",a_lon);
-                    params.put("latitud",a_lat);
+                    params.put("longitud", finalA_lon);
+                    params.put("latitud", finalA_lat);
                     return params;
                 }
             };
