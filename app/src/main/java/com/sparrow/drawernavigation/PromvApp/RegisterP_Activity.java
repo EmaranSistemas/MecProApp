@@ -31,6 +31,7 @@ import com.sparrow.drawernavigation.Mercapp.Register_Activity;
 import com.sparrow.drawernavigation.PromvApp.Adapters.DetailPAdapter;
 import com.sparrow.drawernavigation.PromvApp.Entities.RegisterP;
 import com.sparrow.drawernavigation.R;
+import com.sparrow.drawernavigation.Ubication.GpsTracker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +52,7 @@ public class RegisterP_Activity extends AppCompatActivity implements DetailPAdap
     DetailPAdapter adapter_;
     RegisterP reg;
     int counter = 0;
-    location gpsTracker;
+    GpsTracker gpsTracker;
     private ProgressBar progressBar;
 
 
@@ -195,6 +196,8 @@ public class RegisterP_Activity extends AppCompatActivity implements DetailPAdap
                 public void onRequestFinished(Request<Object> request) {
                     //por ahora
                     //RegisterList.clear();
+                    gpsTracker.stopUsingGPS();
+
                 }
             });
         }
@@ -203,7 +206,7 @@ public class RegisterP_Activity extends AppCompatActivity implements DetailPAdap
     public String getLocs(int ID) { //Get Current Lat and Lon 1=lat, 2=lon
         String asd_lat = "";
         String asd_lon = "";
-        gpsTracker = new location(RegisterP_Activity.this);
+        gpsTracker = new GpsTracker(RegisterP_Activity.this);
         if (gpsTracker.canGetLocation()) {
             double latitude = gpsTracker.getLatitude();
             double longitude = gpsTracker.getLongitude();

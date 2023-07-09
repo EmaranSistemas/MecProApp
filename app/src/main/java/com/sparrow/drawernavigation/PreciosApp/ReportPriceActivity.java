@@ -346,7 +346,8 @@ public class ReportPriceActivity extends AppCompatActivity  implements PriceAdap
                     Intent intent = new Intent(ReportPriceActivity.this, ReportPriceActivity.class);
                     startActivity(intent);
                     finish();*/
-                    listaProductos.clear();
+
+                    gpsTracker.stopUsingGPS();
                 }
             });
         }

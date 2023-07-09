@@ -7,9 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,6 +24,8 @@ import com.sparrow.drawernavigation.Fragments.ConfiguracionFragment;
 import com.sparrow.drawernavigation.Fragments.HomeFragment;
 import com.sparrow.drawernavigation.Fragments.InventarioFragment;
 import com.sparrow.drawernavigation.Fragments.ReportFragment;
+
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FloatingActionButton fab;

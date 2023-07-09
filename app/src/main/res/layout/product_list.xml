@@ -41,11 +41,11 @@
 
             <TextView
                 android:id="@+id/nombre"
-                android:layout_width="245dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PIMIENTA BLANCA MOLIDA FRASCO X 50 GRS"
                 android:textColor="@color/black"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:translationX="8dp"
                 android:maxLines="2"
                 android:ellipsize="end" />
@@ -122,25 +122,31 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 >
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="55dp"
-                    android:layout_height="30dp"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:shadowColor="#DCD7D5"
-                    android:text="+"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:textColorHighlight="#54BC62"
-                    android:textColorLink="#6EDC61"
-                    android:textSize="17dp"
-                    app:icon="@drawable/baseline_add_task_24"
-                    app:strokeColor="#954747"
-                    android:background="#467528"
-                    />
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="55dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="10dp"
+                        android:shadowColor="#DCD7D5"
+                        android:text="+"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textColorHighlight="#54BC62"
+                        android:textColorLink="#6EDC61"
+                        android:textSize="17dp"
+                        app:icon="@drawable/baseline_add_task_24"
+                        app:strokeColor="#954747"
+                        android:background="#3F51B5"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="15dp"
+                        />
+                </RelativeLayout>
+
+
 
             </LinearLayout>
 

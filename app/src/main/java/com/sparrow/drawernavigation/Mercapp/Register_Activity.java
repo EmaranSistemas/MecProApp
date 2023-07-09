@@ -222,6 +222,7 @@ public class Register_Activity extends AppCompatActivity implements DetailAdapte
                 public void onRequestFinished(Request<Object> request) {
                     //por ahora
                     //RegisterList.clear();
+                    gpsTracker.stopUsingGPS();
                 }
             });
         }

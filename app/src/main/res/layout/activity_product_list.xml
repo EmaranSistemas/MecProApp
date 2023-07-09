@@ -23,60 +23,60 @@
             android:textStyle="bold" />
 
 
-        <TextView
-            android:id="@+id/counter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:text="00"
-            android:textColor="@color/light_blue_900"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:translationX="90dp"
-            />
-        <TextView
-            android:id="@+id/reparator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:text="/"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:translationX="105dp"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/counter_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:text="00"
-            android:textColor="@color/red"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:translationX="118dp" />
+            <TextView
+                android:id="@+id/counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="00"
+                android:textColor="@color/light_blue_900"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="50dp"
+                />
+            <TextView
+                android:id="@+id/reparator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="/"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="40dp"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:id="@+id/counter_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="00"
+                android:textColor="@color/red"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="20dp"
+                />
+
+        </RelativeLayout>
+
+
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-<!--
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-
-                android:src="@drawable/baseline_app_mydetails_24"
-                android:translationX="40dp"
-                app:layout_anchor="@id/search_view"
-                app:layout_anchorGravity="top|end" />
--->
 
             <SearchView
                 android:id="@+id/search_view"
