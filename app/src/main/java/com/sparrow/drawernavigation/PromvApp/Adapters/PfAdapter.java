@@ -130,7 +130,21 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     Frescos frescos = adapter.getPfList_r().get(adapterPosition);
                     frescos.setChecked(isChecked);
-                    Log.d("VALUE SALES: ","GOGGGGGOGOOGO");
+                    String valueCount = holder.valueCount.getText().toString();
+                    String valueSale = holder.valueSale.getText().toString();
+
+                    if (!TextUtils.isEmpty(valueCount) && !TextUtils.isEmpty(valueSale)) {
+                        int count = Integer.parseInt(valueCount);
+                        double sale = Double.parseDouble(valueSale);
+                        double result = count * sale;
+                        holder.venta.setText(String.valueOf(result));
+
+                        if (callback != null) {
+                            callback.onValuesUpdated(result);
+                        }
+                    } else {
+                        holder.venta.setText("0");
+                    }
                 }
             }
         });
@@ -151,6 +165,7 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
         Button btnAdd;
         EditText valueSale;
         CheckBox checkBoxValidado;
+        TextView venta;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -160,6 +175,7 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
             valueCount = itemView.findViewById(R.id.value_count);
             btnAdd = itemView.findViewById(R.id.btn_add);
             valueSale = itemView.findViewById(R.id.value_ventas);
+            venta = itemView.findViewById(R.id.venta);
             checkBoxValidado = itemView.findViewById(R.id.validado);
         }
     }
@@ -174,6 +190,16 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
         }
 
         return checkedItems;
+    }
+
+    public interface PfAdapterCallback {
+        void onValuesUpdated(double accumulatedValue);
+    }
+
+    private PfAdapterCallback callback;
+
+    public void setCallback(PfAdapterCallback callback) {
+        this.callback = callback;
     }
 
 }

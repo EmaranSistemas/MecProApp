@@ -41,7 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProVMainActivity extends AppCompatActivity {
+public class ProVMainActivity extends AppCompatActivity implements PfAdapterCallback{
 
     private RecyclerView recyclerView, recyclerView2;
     private PfAdapter adapter, adapter2;
