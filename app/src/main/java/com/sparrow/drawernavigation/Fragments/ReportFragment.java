@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -25,7 +26,8 @@ public class ReportFragment extends Fragment {
 
     private ProgressBar mprogresbar;
     private WebView mwebview;
-    private String url = "https://github.com/"; // Reemplaza con tu URL
+    //private String url = "https://yerson001.github.io/mybot/historia.html"; // Reemplaza con tu URL
+    private String url ="https://emaprod.emaransac.com/";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

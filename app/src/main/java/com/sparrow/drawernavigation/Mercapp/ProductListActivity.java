@@ -347,6 +347,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
         progressDialog.setMessage("Cargando...");
         progressDialog.show();
 
+
         StringRequest request = new StringRequest(Request.Method.POST, "https://emaransac.com/android/insertar_reporte.php",
                 new Response.Listener<String>() {
                     @Override

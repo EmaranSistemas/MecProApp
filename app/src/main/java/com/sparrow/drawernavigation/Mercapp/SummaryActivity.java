@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,8 +14,10 @@ import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -34,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +47,8 @@ public class SummaryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Summary summary;
     private SummaryAdapter summaryAdapter;
+
+    private TextView selectedDateTV;
     public static ArrayList<Summary> SumaryArrayList = new ArrayList<>();
 
     String url = "https://emaransac.com/android/resumen.php";
@@ -52,6 +58,7 @@ public class SummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
         retrieveData(url);
+
 
         SummaryAdapter adapter = new SummaryAdapter(this, SumaryArrayList);
         adapter.setOnItemClickListener(new SummaryAdapter.OnItemClickListener() {
@@ -77,6 +84,40 @@ public class SummaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(SummaryActivity.this, "Actualizando...", Toast.LENGTH_SHORT).show();
                 recreate();
+            }
+        });
+
+        selectedDateTV = findViewById(R.id.idTVSelectedDate);
+
+        // Agrega el listener al botón
+
+        FloatingActionButton btn2 = findViewById(R.id.btn1_cal);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Obtiene la instancia del calendario
+                final Calendar c = Calendar.getInstance();
+
+                // Obtiene el día, mes y año actual
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                // Crea el cuadro de diálogo de selección de fecha
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        SummaryActivity.this, // Reemplaza "YourActivity" con el nombre de tu actividad
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                // Establece la fecha seleccionada en el TextView
+                                // selectedDateTV.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                String selectedDate = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                                Toast.makeText(getApplicationContext(), selectedDate, Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        year, month, day);
+                // Muestra el cuadro de diálogo de selección de fecha
+                datePickerDialog.show();
             }
         });
     }

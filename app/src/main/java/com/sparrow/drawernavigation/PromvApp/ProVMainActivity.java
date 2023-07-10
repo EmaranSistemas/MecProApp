@@ -358,10 +358,14 @@ public class ProVMainActivity extends AppCompatActivity {
 
 
             progressDialog.show();
+            String a_lat = "0";
+            String a_lon = "0";
+            a_lat = getLocs(1);
+            a_lon = getLocs(2);
 
 
-
-
+            String finalA_lon = a_lon;
+            String finalA_lat = a_lat;
             StringRequest request = new StringRequest(Request.Method.POST, "https://emaransac.com/android/insertar_reporte_promotor.php",
                     new Response.Listener<String>() {
                         @Override
@@ -396,10 +400,7 @@ public class ProVMainActivity extends AppCompatActivity {
                     Log.d("------------------TAG-------2-------------", jsonArray2.toString());
 
 
-                    String a_lat = "0";
-                    String a_lon = "0";
-                    a_lat = getLocs(1);
-                    a_lon = getLocs(2);
+
 
 
                     params.put("distribuidor",distribuidor);
@@ -414,8 +415,8 @@ public class ProVMainActivity extends AppCompatActivity {
                     params.put("isCheckedPop",valorCadena2);
                     params.put("ventas",ventas);
                     params.put("observaciones",observaciones);
-                    params.put("longitud",a_lon);
-                    params.put("latitud",a_lat);
+                    params.put("longitud", finalA_lon);
+                    params.put("latitud", finalA_lat);
                     return params;
                 }
             };
