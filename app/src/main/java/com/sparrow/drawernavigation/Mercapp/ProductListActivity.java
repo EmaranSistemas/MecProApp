@@ -259,12 +259,12 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
 
 // Crear la casilla de verificación (CheckBox)
                 final CheckBox Modulo = new CheckBox(ProductListActivity.this);
-                Modulo.setText("Módulo Mdf");
+                Modulo.setText("Módulo MDF");
                 container.addView(Modulo);
 
 // Crear el campo de entrada (EditText)
                 final EditText ModuloTxt = new EditText(ProductListActivity.this);
-                ModuloTxt.setHint("Num Modulo Mdf");
+                ModuloTxt.setHint("Num Modulo MDF");
                 ModuloTxt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
                 ModuloTxt.setInputType(InputType.TYPE_CLASS_NUMBER);
                 container.addView(ModuloTxt);
@@ -422,8 +422,8 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("tienda", "tienda");
-                params.put("sucursal", "sucursal");
+                params.put("tienda", tienda_name);
+                params.put("sucursal",sucursal_name);
                 params.put("rejillafrasco", String.valueOf(rej));
                 params.put("numrejfrasco", numrej);
                 params.put("exhividorsobres", String.valueOf(exhsobre));

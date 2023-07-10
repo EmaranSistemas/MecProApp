@@ -2,6 +2,7 @@ package com.sparrow.drawernavigation.PromvApp.Adapters;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sparrow.drawernavigation.PromvApp.Entities.Frescos;
+import com.sparrow.drawernavigation.PromvApp.ProVMainActivity;
 import com.sparrow.drawernavigation.R;
 
 import java.util.ArrayList;
@@ -66,11 +69,32 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
         }
         holder.valueCount.setText(String.valueOf(holder.counterValue));
 
+
+        // Obtener el valor actual del EditText
+        String editTextSale = holder.valueSale.getText().toString();
+        if (!TextUtils.isEmpty(editTextSale)) {
+            holder.counterSale = Integer.parseInt(editTextValue);
+        } else {
+            holder.counterSale = 0;
+        }
+        holder.valueSale.setText(String.valueOf(holder.counterSale));
+
+
+
+
         // Configurar un OnClickListener para el EditText
         holder.valueCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 holder.valueCount.setText(""); // Eliminar el valor actual del EditText
+            }
+        });
+
+
+        holder.valueSale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.valueSale.setText(""); // Eliminar el valor actual del EditText
             }
         });
 
@@ -106,6 +130,7 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     Frescos frescos = adapter.getPfList_r().get(adapterPosition);
                     frescos.setChecked(isChecked);
+                    Log.d("VALUE SALES: ","GOGGGGGOGOOGO");
                 }
             }
         });
@@ -120,9 +145,11 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
         TextView tvID;
         TextView tvName;
         int counterValue = 0;
+        double counterSale = 0.0;
         Button btnMenos;
         EditText valueCount;
         Button btnAdd;
+        EditText valueSale;
         CheckBox checkBoxValidado;
 
         public ViewHolder(@NonNull View itemView) {
@@ -132,6 +159,7 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
             btnMenos = itemView.findViewById(R.id.btn_menos);
             valueCount = itemView.findViewById(R.id.value_count);
             btnAdd = itemView.findViewById(R.id.btn_add);
+            valueSale = itemView.findViewById(R.id.value_ventas);
             checkBoxValidado = itemView.findViewById(R.id.validado);
         }
     }
