@@ -1,18 +1,21 @@
 package com.sparrow.drawernavigation.PromvApp.Entities;
 
 public class detalle {
-    String id,fecha,distribuidor,cliente,telefono,dirrecion;
+    String id,fecha,distribuidor,cliente,telefono,dirrecion,nonComercial,ventas,observaciones;
 
     public detalle() {
     }
 
-    public detalle(String id, String fecha, String distribuidor,String cliente,String telefono, String direccion) {
+    public detalle(String id, String fecha, String distribuidor, String cliente, String telefono, String direccion, String nonCommercial, String ventas, String observaciones) {
         this.id = id;
         this.fecha = fecha;
         this.distribuidor = distribuidor;
         this.cliente = cliente;
         this.telefono = telefono;
         this.dirrecion = direccion;
+        this.nonComercial = nonCommercial;
+        this.ventas = ventas;
+        this.observaciones = observaciones;
     }
 
     public String getId() {
@@ -57,6 +60,18 @@ public class detalle {
 
     public String getDirrecion() {
         return dirrecion;
+    }
+
+    public String getNonCommercial() {
+        return nonComercial;
+    }
+
+    public String getVentas() {
+        return ventas;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
     }
 
     public void setDirrecion(String dirrecion) {

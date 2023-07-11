@@ -47,7 +47,7 @@ import java.util.Map;
 public class Register_Activity extends AppCompatActivity implements DetailAdapter.ButtonClickListener {
 
     String[] locales = {"------SELECCIONE------","Franco Supermercados","Supermercados Peruanos","Hipermercados Tottus","Cencosud Retail","R-Internacinales El-super","Entidad Bancaria"};
-    String[] motivos = {"------SELECCIONE------","Cobranza","Inventario","Cobranza && Inventario"};
+    String[] motivos = {"------SELECCIONE------","Cobranza","Inventario && Pedido","Entrega de Pedido","Depósito"};
 
     ArrayAdapter<String> adapterlocales;
     ArrayAdapter<String> adaptermotivo;
@@ -273,7 +273,7 @@ public class Register_Activity extends AppCompatActivity implements DetailAdapte
                                     String tiempo = object.getString("tiempo");
                                     int horas = Integer.parseInt(tiempo) / 60; // Obtener la cantidad de horas
                                     int minutos = Integer.parseInt(tiempo) % 60; // Obtener la cantidad de minutos restantes
-                                    reg = new Register(id,inicio,local,motivo,fin,horas + " horas " + minutos + " minutos");
+                                    reg = new Register(id,inicio,local,motivo,fin,horas + " hrs " + minutos + " min");
                                     RegisterList.add(reg);
                                     adapter_.notifyDataSetChanged();
                                 }

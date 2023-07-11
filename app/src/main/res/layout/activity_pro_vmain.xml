@@ -323,7 +323,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="20dp">
 
             <CheckBox
@@ -348,24 +348,40 @@
         </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
 
-
+        <Button
+            android:id="@+id/btnSumar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sumar Valores"
+            android:layout_marginTop="-10dp"
+            />
 
         <EditText
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:padding="5dp"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:id="@+id/ventas_txt"
             android:textSize="14dp"
             android:hint="VENTAS S/."
             android:inputType="numberDecimal"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:background="@drawable/snipper"
             android:drawableStart="@drawable/baseline_monetization_on_24"
             android:layout_gravity="end"
             />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -377,7 +393,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:padding="5dp"
                 android:id="@+id/observaciones_txt"
                 android:textSize="12dp"

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.sparrow.drawernavigation.Mercapp.Adapters.SummaryAdapter;
 import com.sparrow.drawernavigation.PromvApp.Entities.detalle;
 import com.sparrow.drawernavigation.R;
 
@@ -20,6 +21,7 @@ public class DetalleAdapter  extends ArrayAdapter<detalle>
 {
     Context context;
     List<detalle> detalleList;
+
 
     public DetalleAdapter(@NonNull Context context, List<detalle> detalleList) {
         super(context, R.layout.list_reporte,detalleList);
@@ -48,4 +50,6 @@ public class DetalleAdapter  extends ArrayAdapter<detalle>
         tvDireccion.setText(detalleList.get(position).getDirrecion());
         return view;
     }
+
+
 }

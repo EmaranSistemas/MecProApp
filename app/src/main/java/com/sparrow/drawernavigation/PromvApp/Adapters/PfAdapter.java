@@ -30,6 +30,8 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
     private List<Frescos> pfList;
     private List<Frescos> pfList_r;
 
+    private double accumulatedValue = 0.0;
+
     public PfAdapter(Context context, List<Frescos> pfList,List<Frescos> pfList_r) {
         this.context = context;
         this.pfList = pfList;
@@ -139,8 +141,14 @@ public class PfAdapter extends RecyclerView.Adapter<PfAdapter.ViewHolder>  {
                         double result = count * sale;
                         holder.venta.setText(String.valueOf(result));
 
+                        if (isChecked) {
+                            accumulatedValue += result;
+                        } else {
+                            accumulatedValue -= result;
+                        }
+
                         if (callback != null) {
-                            callback.onValuesUpdated(result);
+                            callback.onValuesUpdated(accumulatedValue);
                         }
                     } else {
                         holder.venta.setText("0");

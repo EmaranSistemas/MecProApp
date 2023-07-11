@@ -41,10 +41,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProVMainActivity extends AppCompatActivity implements PfAdapterCallback{
+public class ProVMainActivity extends AppCompatActivity implements PfAdapter.PfAdapterCallback {
 
     private RecyclerView recyclerView, recyclerView2;
     private PfAdapter adapter, adapter2;
+
+    double ventas_totales;
 
     String[] distribuidores = {"Adriel","Francisco","Clara","Rodolfo","Juan Carlos","María","Carmen","Mirtha","Gerardo","Rommel"};
     String[] categorias = {"Bodega","Minimarket","Supermercado","Especiería","Puesto de Mercado",
@@ -141,11 +143,13 @@ public class ProVMainActivity extends AppCompatActivity implements PfAdapterCall
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PfAdapter(this, pro_polvos,pro_polvos);
         recyclerView.setAdapter(adapter);
+        adapter.setCallback(this);
 
         recyclerView2 = findViewById(R.id.myfrecos);
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
         adapter2 = new PfAdapter(this, pro_frecos,pro_frecos);
         recyclerView2.setAdapter(adapter2);
+        adapter2.setCallback(this);
 
 /*
         Spinner distribuidor = findViewById(R.id.distribuidor_txt);
@@ -480,5 +484,10 @@ public class ProVMainActivity extends AppCompatActivity implements PfAdapterCall
         finish();
     }
 
-
+    @Override
+    public void onValuesUpdated(double accumulatedValue) {
+        ventas_totales+=accumulatedValue;
+        txtVentas.setText(ventas_totales+"");
+        Toast.makeText(ProVMainActivity.this,"accumulate: "+ventas_totales+" ",Toast.LENGTH_SHORT).show();
+    }
 }

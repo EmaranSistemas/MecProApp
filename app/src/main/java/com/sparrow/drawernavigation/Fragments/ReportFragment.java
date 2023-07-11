@@ -2,6 +2,7 @@ package com.sparrow.drawernavigation.Fragments;
 
 import android.app.DatePickerDialog;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,8 +27,6 @@ public class ReportFragment extends Fragment {
 
     private ProgressBar mprogresbar;
     private WebView mwebview;
-    //private String url = "https://yerson001.github.io/mybot/historia.html"; // Reemplaza con tu URL
-    private String url ="https://emaprod.emaransac.com/";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +36,10 @@ public class ReportFragment extends Fragment {
         mwebview = view.findViewById(R.id.webView);
 
         mwebview.getSettings().setJavaScriptEnabled(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mwebview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
         mwebview.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -65,45 +68,14 @@ public class ReportFragment extends Fragment {
             }
         });
 
-        mwebview.loadUrl(url);
+        String METABASE_SITE_URL = "https://emadata.emaransac.com";
+        int dashboardId = 258;
+        String token = JwtUtils.generateMetabaseToken(dashboardId);
+
+        String iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token + "#bordered=true&titled=true";
+
+        mwebview.loadUrl(iframeUrl);
 
         return view;
     }
 }
-
-
-        /*
-        // Inicializa las variables
-        pickDateBtn = view.findViewById(R.id.idBtnPickDate);
-        selectedDateTV = view.findViewById(R.id.idTVSelectedDate);
-
-        // Agrega el listener al botón
-        pickDateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Obtiene la instancia del calendario
-                final Calendar c = Calendar.getInstance();
-
-                // Obtiene el día, mes y año actual
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                // Crea el cuadro de diálogo de selección de fecha
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        requireContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                // Establece la fecha seleccionada en el TextView
-                                selectedDateTV.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                            }
-                        },
-                        year, month, day);
-                // Muestra el cuadro de diálogo de selección de fecha
-                datePickerDialog.show();
-            }
-        });
-
-
-         */
